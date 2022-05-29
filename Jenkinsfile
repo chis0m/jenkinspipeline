@@ -11,17 +11,16 @@ pipeline {
 
         stage('Test stage') {
           steps {
-            echo 'Testing stage'
+            echo '"test conducted with $(driver_path)"'
           }
         }
 
       }
     }
 
-    stage('test') {
+    stage('deploy') {
       steps {
-        echo '"test conducted with $(driver_path) "'
-        writeFile(file: 'testlog.txt', text: 'test was successful')
+        echo 'deploying with $(driver_path)'
       }
     }
 
