@@ -11,7 +11,7 @@ pipeline {
 
         stage('Test stage') {
           steps {
-            echo '"test conducted with $(driver_path)"'
+            echo '"test conducted with $(driverpath)"'
           }
         }
 
@@ -33,6 +33,6 @@ pipeline {
 
   }
   environment {
-    driver_path = '/usr/bin/Chromedriver'
+    driverpath = '/usr/bin/Chromedriver'
   }
 }
