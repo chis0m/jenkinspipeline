@@ -11,7 +11,7 @@ pipeline {
 
         stage('Test stage') {
           steps {
-            echo 'test conducted with ${driver_path}'
+            echo "test conducted with ${driver_path}"
             writeFile(file: 'testlog.txt', text: 'test was successful')
           }
         }
@@ -23,7 +23,7 @@ pipeline {
       parallel {
         stage('deploy') {
           steps {
-            sh 'echo "deploying with $driver_path"'
+            echo "deploying  with ${driver_path}"
           }
         }
 
