@@ -38,8 +38,20 @@ pipeline {
 
       }
     }
+    stage('dev environment') {
+        when {
+          branch 'develop'
+        }
+      steps {
+        echo 'deploying to dev environment'
+        input(message: 'Deploy to dev environment?', id: 'yes', ok: 'yes')
+      }
+    }
 
     stage('production') {
+        when {
+          branch 'master'
+        }
       steps {
         echo 'deploying to production'
         input(message: 'Deploy to production?', id: 'yes', ok: 'yes')
