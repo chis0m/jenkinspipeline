@@ -12,6 +12,7 @@ pipeline {
         stage('Test stage') {
           steps {
             echo '"test conducted with ${driver_path}"'
+            writeFile(file: 'testlog.txt', text: 'test was successful')
           }
         }
 
