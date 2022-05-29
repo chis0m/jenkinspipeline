@@ -11,8 +11,11 @@ pipeline {
 
         stage('Test stage') {
           steps {
+            environment {
+              localEnv = 'local env'
+            }
             echo "test conducted with ${driver_path}"
-            writeFile(file: 'testlog.txt', text: 'test was successful')
+            writeFile(file: 'testlog.txt', text: "test was successful with ${localEnv}")
           }
         }
 
