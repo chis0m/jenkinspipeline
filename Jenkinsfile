@@ -11,7 +11,7 @@ pipeline {
 
         stage('Test stage') {
           steps {
-            echo '"test conducted with $(driverpath)"'
+            echo '"test conducted with ${driver_path}"'
           }
         }
 
@@ -19,20 +19,31 @@ pipeline {
     }
 
     stage('deploy') {
-      steps {
-        echo 'deploying with $(driver_path)'
+      parallel {
+        stage('deploy') {
+          steps {
+            echo 'deploying with ${driver_path}'
+          }
+        }
+
+        stage('artifacts') {
+          steps {
+            archiveArtifacts 'testlog.txt'
+          }
+        }
+
       }
     }
 
     stage('production') {
       steps {
         echo 'deploying to production'
-        input(message: 'Deploy to production?', id: 'yest')
+        input(message: 'Deploy to production?', id: 'yes', ok: 'yes')
       }
     }
 
   }
   environment {
-    driverpath = '/usr/bin/Chromedriver'
+    driver_path = '/usr/bin/Chromedriver'
   }
 }
